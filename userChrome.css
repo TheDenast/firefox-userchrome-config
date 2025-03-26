@@ -1,0 +1,138 @@
+header {
+  display: none !important;
+}
+
+#sidebar-splitter {
+  display: none !important;
+}
+
+/* Adjust ma/* Hide native Firefox tabs */
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+/* Sidebery styles */
+:root {
+  --sidebar-width: 300px;
+  --sidebar-collapsed-width: 100px !important; /* Added !important */
+  --navbar-height: 40px;
+}
+
+/* Increased specificity and added !important to all properties */
+#main-window #sidebar-box {
+  position: fixed !important;
+  left: 0 !important;
+  top: var(--navbar-height) !important;
+  height: calc(100vh - var(--navbar-height)) !important;
+  overflow: hidden;
+  z-index: 1000 !important;
+  width: var(--sidebar-collapsed-width) !important;
+  min-width: var(--sidebar-collapsed-width) !important;
+  max-width: var(--sidebar-collapsed-width) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+#main-window #sidebar-box:hover {
+  width: var(--sidebar-width) !important;
+  min-width: var(--sidebar-width) !important;
+  max-width: var(--sidebar-width) !important;
+}
+
+#sidebar-in content area */
+#content-deck {
+  margin-left: var(--sidebar-collapsed-width) !important;
+  margin-top: var(--navbar-height) !important;
+  transition: margin-left 0.2s ease-in-out !important;
+}
+
+#sidebar-box:hover ~ #content-deck {
+  margin-left: var(--sidebar-width) !important;
+}
+
+/* Ensure Sidebery content fits within sidebar */
+#sidebar-box #sidebar {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Ensure navbar stays on top */
+#nav-bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 1001 !important;
+}
+
+/* Adjust main browser window */
+#browser {
+  position: absolute !important;
+  top: var(--navbar-height) !important;
+  left: var(--sidebar-collapsed-width) !important;
+  width: calc(100% - var(--sidebar-collapsed-width)) !important;
+  height: calc(100vh - var(--navbar-height)) !important;
+  transition: left 0.2s ease-in-out, width 0.2s ease-in-out !important;
+}
+
+#sidebar-box:hover ~ #browser {
+  left: var(--sidebar-width) !important;
+  width: calc(100% - var(--sidebar-width)) !important;
+}
+
+/* Fullscreen adjustments */
+#main-window[inFullscreen] #sidebar-box,
+#main-window[inFullscreen] #nav-bar,
+#main-window[inFullscreen] #navigator-toolbox {
+  display: none !important;
+}
+
+#main-window[inFullscreen] #browser {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#main-window[inFullscreen] .browserContainer {
+  background-color: #000 !important;
+}
+
+#main-window[inFullscreen] .browserStack > browser {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Force recalculation using calc() */
+@media all {
+  #main-window #sidebar-box {
+    width: calc(var(--sidebar-collapsed-width) * 1) !important;
+    min-width: calc(var(--sidebar-collapsed-width) * 1) !important;
+    max-width: calc(var(--sidebar-collapsed-width) * 1) !important;
+  }
+}
+
+/* Ensure styles are applied after Firefox's internal styles */
+@-moz-document url-prefix() {
+  #main-window #sidebar-box {
+    width: var(--sidebar-collapsed-width) !important;
+    min-width: var(--sidebar-collapsed-width) !important;
+    max-width: var(--sidebar-collapsed-width) !important;
+  }
+}
+
+/* New rules for exiting fullscreen */
+#main-window:not([inFullscreen]) #sidebar-box {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#main-window:not([inFullscreen]) #browser {
+  left: var(--sidebar-collapsed-width) !important;
+  width: calc(100% - var(--sidebar-collapsed-width)) !important;
+}
+
+#main-window:not([inFullscreen]) #sidebar-box:hover ~ #browser {
+  left: var(--sidebar-width) !important;
+  width: calc(100% - var(--sidebar-width)) !important;
+}
