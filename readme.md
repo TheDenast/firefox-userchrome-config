@@ -9,4 +9,4 @@ A collection of userChrome.css tweaks for Firefox optimized for vertical tabs an
 3. Copy the `userChrome.css` file to your Firefox profile directory
 
 ## Credits
-- [userChrome-css](https://github.com/christorange/VerticalFox/tree/main) is the basis of this project with some modifications
+- [VerticalFox](https://github.com/christorange/VerticalFox/tree/main) is the basis of this project with some modifications
