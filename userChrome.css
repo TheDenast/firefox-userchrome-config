@@ -209,14 +209,21 @@ toolbarbutton:hover {
   text-shadow: none !important;
 }
 
-/* Uncomment to Hide tabs bar for Tree style tabs (Credit u/jfgxyz on Reddit) */
+/* Hide tabs bar and title bar completely for tiling WM */
 toolbar#TabsToolbar {
+  display: none !important;
+  visibility: collapse !important;
   height: 0px;
   min-height: 0 !important;
-  background-color: var(--bg) !important;
 }
 .toolbar-items {
   visibility: collapse;
+}
+
+/* Ensure window controls are hidden */
+.titlebar-buttonbox-container,
+.titlebar-buttonbox {
+  display: none !important;
 }
 
 /* ----- Move menu buttons ----- */
@@ -254,79 +261,18 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
   position: static !important;
 }
 
-#navigator-toolbox:not([inFullscreen])
-  #TabsToolbar
-  .titlebar-buttonbox-container {
-  visibility: visible !important;
-  display: block !important;
-  position: absolute !important;
-  top: 1px !important;
-  left: unset !important;
-  right: 0 !important;
-}
+/* Window controls hidden for tiling WM - removed visibility rules */
 
-#TabsToolbar .titlebar-min {
-  -moz-box-ordinal-group: 0 !important;
-}
+/* Button ordering rules removed - buttons are hidden */
 
-#TabsToolbar .titlebar-max,
-.titlebar-restore {
-  -moz-box-ordinal-group: 1 !important;
-}
-
-#TabsToolbar .titlebar-close {
-  -moz-box-ordinal-group: 2 !important;
-}
-
-#navigator-toolbox[inFullscreen]
-  #navigator-toolbox
-  #TabsToolbar
-  .titlebar-buttonbox-container {
-  -moz-box-ordinal-group: 1 !important;
-}
-
-#navigator-toolbox #TabsToolbar .titlebar-buttonbox-container {
-  -moz-box-ordinal-group: 1 !important;
-}
-
-@media only screen and (max-width: 670px) {
-  #main-window
-      #navigator-toolbox:not([inFullscreen])
-      #TabsToolbar
-      .titlebar-buttonbox-container {
-      visibility: visible !important;
-      position: relative !important;
-      display: block !important;
-  }
-  #main-window #navigator-toolbox:not([inFullscreen]) #nav-bar {
-      padding-right: initial !important;
-  }
-  #TabsToolbar.browser-toolbar {
-      display: flex !important;
-      justify-content: flex-end !important;
-  }
-}
+/* Mobile responsive rules removed - window controls hidden */
 
 #toolbar-menubar {
   /* menubar bg color */
   background-color: var(--bg) !important;
 }
 
-/* Line up the Windows controls with the rest of the icons in the toolbar. */
-:root:not([sizemode="maximized"]) .titlebar-buttonbox-container {
-  padding-top: 3px;
-}
-
-.titlebar-buttonbox {
-  z-index: 3 !important;
-  padding-right: 3px;
-}
-
-.titlebar-buttonbox * {
-  border-radius: 5px;
-  width: 35px;
-  height: 38px;
-}
+/* Titlebar button styling removed - buttons are hidden */
 
 /* ========== SIDEBERY + FIREFOX 140 SIDEBAR FIX - RESTORE WORKING HOVER ========== */
 
@@ -447,3 +393,4 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
 }
 
 /* ========== END SIDEBAR SECTION ========== */
+
